@@ -1,1 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A.I. DelvePad – Supercharge Your A.I. Learning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.15);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --card-bg: #0f172a;
+      --border-subtle: #1f2937;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .page-shell {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    header.site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, #22d3ee, #6366f1 55%, #4c1d95 100%);
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.2),
+                  0 12px 30px rgba(15, 23, 42, 0.85);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+    }
+
+    .brand-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .nav-cta {
+      background: #f97316;
+      color: #0b1120;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(248, 113, 113, 0.45);
+    }
+
+    .nav-cta:hover {
+      background: #fb923c;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.7fr);
+      gap: 26px;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header.site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+    }
+
+    /* Hero / intro */
+    .hero-card {
+      background: radial-gradient(circle at top left, #111827, #020617 55%, #020617);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-pill span {
+      color: #a855f7;
+      font-weight: 500;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-title {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title span {
+      color: #38bdf8;
+    }
+
+    .hero-subtitle {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      max-width: 36rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #e5e7eb;
+      border-radius: 999px;
+      border: none;
+      padding: 9px 18px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: #4f46e5;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+      padding: 8px 14px;
+      font-size: 0.86rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      border-color: #e5e7eb;
+      color: #e5e7eb;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-pill {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    /* Features section */
+    .features-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.7);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #818cf8;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .feature-item {
+      padding: 10px 11px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.97)
+      );
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .feature-title {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .feature-body {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    /* Right side */
+    .right-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 16px 15px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #34d399;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card-body {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .card-list {
+      list-style: none;
+      margin-top: 4px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .card-list li {
+      margin-bottom: 4px;
+    }
+
+    .inline-link {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    .inline-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 26px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <div class="brand-text">
+          <span class="brand-name">A.I. DelvePad</span>
+          <span class="brand-tagline">Organize your A.I. learning</span>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <a href="#contact" class="nav-link">Contact</a>
+        <button class="nav-cta" id="cta-help-btn">Need Help?</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Left: Hero + Features -->
+      <section class="hero-card">
+        <div class="hero-pill">
+          <span>New</span> Track tutorials across platforms
+        </div>
+        <h1 class="hero-title">
+          Supercharge your <span>A.I. learning</span> workflow
+        </h1>
+        <p class="hero-subtitle">
+          Organize your favorite A.I. tutorials, track progress, and keep all of
+          your learning resources in one clean mobile-first dashboard.
+        </p>
+
+        <div class="hero-cta-row">
+          <button class="btn-primary" id="cta-main-btn">
+            Get the app
+          </button>
+          <button class="btn-secondary" id="cta-github-btn">
+            View open-source project
+          </button>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-pill">Mobile-first interface</div>
+          <div class="hero-meta-pill">Track tutorials from YouTube, Udemy, and more</div>
+        </div>
+      </section>
+
+      <!-- Right column cards -->
+      <section class="right-stack">
+        <article class="card">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Learning overview
+          </div>
+          <h2 class="card-title">Organize & track your A.I. tutorials</h2>
+          <p class="card-body">
+            Keep your A.I. tutorials and learning resources grouped in one
+            place, with visual indicators to show what you have started,
+            finished, or bookmarked to watch next.
+          </p>
+          <ul class="card-list">
+            <li>Save tutorials from multiple platforms</li>
+            <li>Mark favorites to build custom learning paths</li>
+            <li>See at a glance what you are currently working on</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Open source
+          </div>
+          <h2 class="card-title">Use and extend the mobile app</h2>
+          <p class="card-body">
+            A.I. DelvePad is open source, so you can explore the full iOS
+            project, learn from the implementation, or fork it for your own
+            learning tools.
+          </p>
+          <ul class="card-list">
+            <li>Full iOS app project available</li>
+            <li>Customize the app for your own study workflows</li>
+            <li>Practice A.I.-driven development patterns</li>
+          </ul>
+          <a href="#" id="github-link" class="inline-link">View on GitHub</a>
+        </article>
+      </section>
+    </main>
+
+    <section class="features-card" style="margin-top: 26px;">
+      <p class="section-label">Features</p>
+      <h2 class="section-title">Tools to accelerate your A.I. learning</h2>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <h3 class="feature-title">Curated tutorials</h3>
+          <p class="feature-body">
+            Keep high-quality A.I. tutorials from different platforms neatly
+            organized in one place, instead of scattered tabs and bookmarks.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h3 class="feature-title">Progress tracking</h3>
+          <p class="feature-body">
+            See how far you’ve gone in your current A.I. topics with simple
+            progress indicators and status tags.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h3 class="feature-title">Favorites & learning paths</h3>
+          <p class="feature-body">
+            Flag your most valuable tutorials as favorites and arrange them into
+            personalized sequences that match your learning goals.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h3 class="feature-title">Multi-platform support</h3>
+          <p class="feature-body">
+            Track content from YouTube, Udemy, and other learning platforms in a
+            single, consistent interface.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <span>Questions about A.I. DelvePad or setup? Use the help button above to reach out.</span>
+      <span>© <span id="year-span"></span> A.I. DelvePad</span>
+    </footer>
+  </div>
+
+  <script>
+    // Simple JS wiring for CTAs – update the URLs as needed for your live site.
+    document.getElementById("year-span").textContent = new Date().getFullYear();
+
+    document.getElementById("cta-main-btn").addEventListener("click", function () {
+      // Replace with your actual App Store / landing URL
+      window.location.href = "#";
+    });
+
+    document.getElementById("cta-github-btn").addEventListener("click", function () {
+      // Replace with your GitHub repo URL
+      window.open("#", "_blank");
+    });
+
+    document.getElementById("github-link").addEventListener("click", function (e) {
+      e.preventDefault();
+      // Replace with your GitHub repo URL
+      window.open("#", "_blank");
+    });
+
+    document.getElementById("cta-help-btn").addEventListener("click", function () {
+      // Simple example: scroll to contact/footer; replace with mailto or form.
+      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
 
