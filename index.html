@@ -279,11 +279,14 @@
     .phone-shell {
       border-radius: 1.75rem;
       overflow: hidden;
-      border: 8px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+      /* borders removed */
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
     }
+
+    /* Still keep the decorative circles if you want elsewhere */
     .phone-circle {
       position: absolute;
       border-radius: 999px;
@@ -317,6 +320,95 @@
       width: 18px;
       height: 18px;
       background: rgba(59, 130, 246, 0.5);
+    }
+
+    /* Screens gallery layout */
+.screens-grid{
+  display:grid;
+  gap:2.5rem;
+  position:relative;
+}
+
+/* MOBILE — natural vertical flow */
+@media(max-width:767px){
+  .screens-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* DESKTOP — your side layout */
+@media(min-width:768px){
+  .screens-grid{
+    grid-template-columns:1.4fr .6fr;
+    align-items:flex-end;
+  }
+}
+
+
+    .phone-frame.small {
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-card {
+      background: #ffffff;
+      color: #111827;
+      border-radius: 1rem;
+      padding: 1.75rem 1.5rem;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      position: relative;
+    }
+    .modal-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--customGreen-800);
+    }
+    .modal-body {
+      font-size: 0.98rem;
+      color: #4b5563;
+    }
+    .modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.9rem;
+      border: none;
+      background: transparent;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: #9ca3af;
+    }
+    .modal-close:hover {
+      color: #4b5563;
+    }
+    .modal-trigger-btn {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.1);
+      color: #f9fafb;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+    .modal-trigger-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
 
     /* Contact section */
@@ -407,7 +499,6 @@
       font-size: 2rem;
       font-weight: 700;
       color: var(--customGreen);
-      margin-bottom: 0.75rem;
     }
     .features-subtitle {
       color: var(--gray-600);
@@ -560,13 +651,18 @@
     <section class="hero">
       <div class="container">
         <div class="hero-grid">
-          <div>
-            <h1 class="hero-title">Explore A.I. Skills Via Mobile</h1>
-            <p class="hero-subtitle">
-              View your progress with free tutorials with DelvePad's intuitive
-              platform.
-            </p>
-          </div>
+            <div class="hero-left">
+              <h1 class="hero-title">Explore A.I. Skills Via Mobile</h1>
+              <p class="hero-subtitle">
+                View your progress with free tutorials with DelvePad's intuitive platform.
+              </p>
+
+              <!-- Phone preview under text -->
+              <div class="hero-phone-preview">
+                <img src="i15AIDelvePad1.png" alt="DelvePad mobile preview">
+              </div>
+            </div>
+
           <div class="hero-card-shell">
             <div class="hero-card-glass">
               <div class="hero-card-inner">
@@ -616,31 +712,196 @@
       <div class="hero-circle bottom"></div>
     </section>
 
-    <!-- Screenshot section -->
     <section class="screenshot-section">
-      <div class="container">
-        <div class="text-center" style="margin-bottom: 2rem">
-          <p>
-            Organize your favorite A.I. tutorials and track your learning
-            progress with our intuitive mobile interface.
-          </p>
-        </div>
-        <div class="flex justify-center">
-          <div class="phone-frame">
-            <div class="phone-shell">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/dpadscreen2%281%29-gdzMxn8klPc21ze9CrgnUDmb2vRk55.png"
-                alt="A.I. DelvePad Favorites Screen"
-              />
-            </div>
-            <div class="phone-circle tl"></div>
-            <div class="phone-circle br"></div>
-            <div class="phone-circle mid-l"></div>
-            <div class="phone-circle mid-r"></div>
-          </div>
-        </div>
+<style>
+.screens-grid{
+  display:grid;
+  gap:2rem;
+  position:relative;
+}
+@media(min-width:768px){
+  .screens-grid{grid-template-columns:1.4fr .6fr;}
+}
+.stack-column{display:flex;flex-direction:column;gap:1.25rem}
+
+.info-card{
+  width:300px;
+  padding:1.5rem;
+  border-radius:1.25rem;
+  background:linear-gradient(135deg,#ffffff,#e6f6ef);
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+  border:2px solid rgba(52,168,83,.35);
+}
+.info-card h3{
+  font-size:1.25rem;
+  font-weight:800;
+  background:linear-gradient(90deg,#0f9d58,#3b82f6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.info-card p{font-size:.95rem;color:#1f2933;line-height:1.55}
+
+@media(max-width:768px){
+  .floating-card{
+    position:relative;
+    width:100%;
+    right:auto;
+    bottom:auto;
+    margin-top:1.5rem;
+  }
+}
+    
+    .hero-left{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.hero-phone-preview{
+  margin-top:2rem;
+  width:240px;
+  max-width:80vw;
+  filter: drop-shadow(0 18px 40px rgba(0,0,0,.35));
+}
+
+.hero-phone-preview img{
+  width:100%;
+  border-radius:1.25rem;
+}
+
+/* On desktop, float it slightly right */
+@media(min-width:1024px){
+  .hero-phone-preview{
+    width:280px;
+    transform: translateX(40px);
+  }
+}
+    
+    .stack-row{
+  display:flex;
+  align-items:center;
+  gap:2rem;
+}
+
+/* Reverse row for middle phone */
+.stack-row.reverse{
+  flex-direction:row-reverse;
+}
+
+/* Proper mobile stacking */
+@media(max-width:768px){
+  .stack-row{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+    
+    /* Lock card width */
+.info-card{
+  flex: 0 0 300px;
+}
+
+/* Make phones 25% visually larger */
+.phone-frame.small{
+  flex: 0 0 375px;  /* 300 × 1.25 */
+  max-width:375px;
+}
+
+/* Left-align all phone images */
+.stack-row{
+  justify-content:flex-start;
+}
+
+/* Make sure cards stay centered vertically but phones hug the left */
+.stack-row .phone-frame{
+  margin-right:auto;
+}
+
+    
+
+</style>
+
+<div class="container">
+  <div class="text-center" style="margin-bottom:2rem">
+    <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:.5rem">
+      A.I. DelvePad on Mobile
+    </h2>
+    <p>
+      A.I. Delvepad helps you organize tutorials, track your progress, and master A.I. skills with an intuitive mobile experience.
+    </p>
+  </div>
+
+  <div class="screens-grid">
+
+    <!-- MAIN DEVICE -->
+    <div class="screen-item screen-item-main">
+      <div class="phone-frame">
+
       </div>
-    </section>
+    </div>
+
+    <!-- STACKED DEVICES -->
+<div class="stack-column">
+
+  <!-- PHONE 2 -->
+  <div class="stack-row">
+    <div class="phone-frame small">
+      <img src="i15AIDelvePad2.png">
+    </div>
+
+    <div class="info-card right">
+      <h3>LLM Building Roadmap</h3>
+      <p>Follow step-by-step guidance that visually breaks down how large language models are structured, trained, and deployed.</p>
+    </div>
+  </div>
+
+  <!-- PHONE 3 -->
+  <div class="stack-row reverse">
+    <div class="info-card left">
+      <h3>Curated Tutorials</h3>
+      <p>Explore expertly selected AI tutorials gathered from top learning platforms and creators.</p>
+    </div>
+
+    <div class="phone-frame small">
+      <img src="i15AIDelvePad3.png">
+    </div>
+  </div>
+
+  <!-- PHONE 4 -->
+  <div class="stack-row">
+    <div class="phone-frame small">
+      <img src="i15AIDelvePad4.png">
+    </div>
+
+    <div class="info-card right">
+      <h3>Progress Tracking</h3>
+      <p>Track your daily learning streaks, completed modules, and skill milestones visually.</p>
+    </div>
+  </div>
+
+</div>
+
+
+    <!-- FLOATING INFO CARD -->
+    <div id="float-card" class="floating-card">
+      <h3 id="float-title"></h3>
+      <p id="float-text"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const cards={
+  card2:{title:"LLM Building Roadmap",text:"Follow step-by-step guidance that visually breaks down how large language models are structured, trained, and deployed. This roadmap transforms complex AI architecture into clear, easy-to-understand learning paths."},
+  card3:{title:"Curated Tutorials",text:"Explore expertly selected AI tutorials gathered from top learning platforms and creators. Everything is organized into focused categories so you can build skills faster without information overload."},
+  card4:{title:"Progress Tracking",text:"Track your daily learning streaks, completed modules, and skill milestones visually. Real-time progress indicators help keep your AI journey consistent and motivating."}
+};
+const card=document.getElementById("float-card"),
+t=document.getElementById("float-title"),
+p=document.getElementById("float-text");
+
+</script>
+</section>
 
     <!-- Contact section -->
     <section class="contact-section">
@@ -919,9 +1180,9 @@
     </section>
   </main>
 
-  <!-- Minimal JS: you can extend this for analytics, nav, etc. -->
+  <!-- Minimal JS -->
   <script>
-    // Example: smooth-scroll to features when hash present
+    // Smooth-scroll to features when hash present
     document.addEventListener("DOMContentLoaded", function () {
       if (window.location.hash === "#features") {
         const el = document.getElementById("features");
@@ -929,6 +1190,51 @@
           el.scrollIntoView({ behavior: "smooth" });
         }
       }
+
+      // Modal wiring
+      const triggers = document.querySelectorAll(".modal-trigger-btn");
+      const overlays = document.querySelectorAll(".modal-overlay");
+      const closes = document.querySelectorAll(".modal-close");
+
+      function openModal(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.add("active");
+      }
+
+      function closeModal(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("active");
+      }
+
+      triggers.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-modal");
+          if (id) openModal(id);
+        });
+      });
+
+      closes.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-close");
+          if (id) closeModal(id);
+        });
+      });
+
+      // Close when clicking backdrop
+      overlays.forEach((overlay) => {
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) {
+            overlay.classList.remove("active");
+          }
+        });
+      });
+
+      // Escape key closes any open modal
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          overlays.forEach((o) => o.classList.remove("active"));
+        }
+      });
     });
   </script>
 </body>
