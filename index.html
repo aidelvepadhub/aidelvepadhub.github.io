@@ -1,10 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>A.I. DelvePad - Master A.I. Skills With Organized Learning</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Track your progress, organize tutorials, and accelerate your A.I. learning journey with DelvePad's intuitive platform." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.I. DelvePad – Master A.I. Skills With Organized Learning</title>
+<link rel="stylesheet" href="styles.css">
+
+<!-- Primary Tags -->
+<title>A.I. DelvePad – Master A.I. Skills With Organized Learning</title>
+<meta name="description"
+	content="A.I. DelvePad helps you organize tutorials, track your progress, and accelerate your A.I. learning journey with an intuitive mobile platform." />
+
+<meta name="keywords"
+    content="online learning tools, Transformer, Neural, Tokenization, Embeddings, Fine-tuning, Prompt, Inference, Model, Algorithm, LLM, Machine Learning, Coding Agent, Vibe, Vibe Coding, A.I. instruction, e-learning platform. "/>
+
+<!-- Robots & Crawling Instructions -->
+<meta name="robots" content="index, follow, noodp, noydir" />
+<meta name="googlebot" content="index, follow" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://aidelvepad.com/" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:title" content="A.I. DelvePad – Master A.I. Skills With Organized Learning" />
+<meta property="og:description"
+	content="Track your learning progress, organize A.I. tutorials, and enhance your mastery journey with A.I. DelvePad’s intuitive tools." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://aidelvepad.com/" />
+<meta property="og:image" content="https://aidelvepad.com/images/aidelvepad-og.jpg" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="A.I. DelvePad – Master A.I. Skills With Organized Learning" />
+<meta name="twitter:description"
+	content="A.I. DelvePad helps you track learning progress, explore curated A.I. tutorials, and practice modern A.I. development skills." />
+<meta name="twitter:image" content="https://aidelvepad.com/images/aidelvepad-twitter-card.jpg" />
+
+<!-- Structured Data – JSON‑LD -->
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"url": "https://aidelvepad.com/",
+	"name": "A.I. DelvePad",
+	"description": "A.I. DelvePad helps you organize tutorials, track your progress, and accelerate your A.I. learning journey with an intuitive mobile platform.",
+	"publisher": {
+		"@type": "Organization",
+		"name": "A.I. DelvePad",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://aidelvepad.com/images/aidelvepad-logo.png"
+		}
+	}
+}
+</script>
+    
   <style>
     /* RESET */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -84,6 +134,8 @@
     .btn-primary:hover{background:var(--customGreen-700);transform:scale(1.03)}
     .btn-github{background:var(--customGreen);color:#fff}
     .btn-github:hover{background:var(--customGreen-700);transform:scale(1.03)}
+    .btn-contact{background:#fff;color:var(--customGreen);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+    .btn-contact:hover{background:#f9fafb;transform:scale(1.03)}
     .btn-icon-left{margin-right:.5rem}
     .hero-availability{
       margin-top:1rem;background:var(--customGreen-50);border:1px solid rgba(15,157,88,.2);
@@ -93,19 +145,15 @@
     .hero-left{display:flex;flex-direction:column;align-items:flex-start}
     .hero-phone-preview{
       margin-top:2rem;width:240px;max-width:80vw;filter:drop-shadow(0 18px 40px rgba(0,0,0,.35));
-        
     }
-      
- 
-      
     .hero-phone-preview img{border-radius:1.25rem;width:100%}
     @media(min-width:1024px){
       .hero-phone-preview{width:280px;transform:translateX(40px)}
     }
 
-    /* SCREENSHOT SECTION - ✅ 60% REDUCED TOP PADDING */
+    /* SCREENSHOT SECTION - 60% REDUCED TOP PADDING */
     .screenshot-section{
-      padding:.2rem 0 4rem 0;  /* Top: 4rem → 1.6rem (60% reduction) */
+      padding:.2rem 0 4rem 0;
       background:linear-gradient(to bottom,var(--customGreen),var(--customGreen-700));color:#fff;
     }
     .screenshot-section p{max-width:32rem;margin:0 auto 3rem auto;opacity:.9}
@@ -113,7 +161,7 @@
     .screens-grid{display:grid;gap:2.5rem;align-items:center}
     @media(min-width:768px){.screens-grid{grid-template-columns:1.3fr .7fr}}
     
-    /* ✅ DESKTOP: Move images+cards 100px right */
+    /* DESKTOP: Move images+cards 100px right */
     @media(min-width:1024px){
       .screens-grid{margin-left:250px}
     }
@@ -121,7 +169,7 @@
     .stack-column{display:flex;flex-direction:column;gap:1.75rem}
     .stack-row{display:flex;gap:1.5rem;align-items:center}
     
-    /* ✅ MOBILE: Cards 40% shorter height */
+    /* MOBILE: Cards 40% shorter height */
     @media(max-width:767px){
       .stack-row{flex-direction:column;text-align:center}
       .info-card{flex:0 0 auto;padding:.9rem;max-height:140px;overflow:hidden}
@@ -145,10 +193,19 @@
     }
     .phone-frame.small img:hover{transform:translateY(-4px)}
 
-    /* ✅ Desktop: 60% smaller images */
+    /* Desktop: 60% smaller images */
     @media(min-width:1024px){
-      .screenshot-section .phone-frame.small img{transform:scale(1.1);transform-origin:center top}
+      .screenshot-section .phone-frame.small img{transform:scale(1.2);transform-origin:center top}
     }
+
+    /* CONTACT SECTION */
+    .contact-section{
+      padding:4rem 0;
+      background:linear-gradient(to bottom right,var(--customGreen),var(--customGreen-700),var(--customGreen-800));
+      position:relative;overflow:hidden;color:#fff;
+    }
+    .contact-inner{position:relative;z-index:10}
+    .contact-inner p{max-width:32rem;margin:0 auto 2rem auto;opacity:.9;font-size:1.05rem}
 
     /* OPEN SOURCE SECTION */
     .oss-section{padding:4rem 0;background:var(--gray-50)}
@@ -238,7 +295,7 @@
               <div class="phone-frame small">
                 <img src="i15AIDelvePad3.png" alt="Curated tutorials screen">
               </div>
-            <div class="info-card">
+             <div class="info-card">
                 <h3>Curated Tutorials</h3>
                 <p>Explore expertly selected AI tutorials gathered from top learning platforms and creators.</p>
               </div>
@@ -257,6 +314,8 @@
         </div>
       </div>
     </section>
+
+
 
     <!-- Open source section -->
     <section class="oss-section">
@@ -310,6 +369,24 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+      
+          <!-- ✅ CONTACT SECTION ADDED BACK -->
+    <section class="contact-section">
+      <div class="container contact-inner text-center">
+        <p>
+          Have questions about A.I. DelvePad or need assistance with the options?
+        </p>
+        <a href="mailto:leapdeck1@gmail.com">
+          <center><button class="btn btn-contact">
+            <svg class="btn-icon-left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            Contact Us For Assistance
+          </button></center>
+        </a>
       </div>
     </section>
   </main>
