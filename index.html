@@ -4,701 +4,206 @@
   <meta charset="utf-8" />
   <title>A.I. DelvePad - Master A.I. Skills With Organized Learning</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Track your progress, organize tutorials, and accelerate your A.I. learning journey with DelvePad's intuitive platform."
-  />
-
-  <!-- Basic reset and typography -->
+  <meta name="description" content="Track your progress, organize tutorials, and accelerate your A.I. learning journey with DelvePad's intuitive platform." />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    :root {
-      --customGreen: #0f9d58;
-      --customGreen-50: #e6f6ef;
-      --customGreen-100: #c8ebdc;
-      --customGreen-400: #34a853;
-      --customGreen-700: #0c6c3d;
-      --customGreen-800: #0a5430;
-      --primary: #3b82f6;
-      --gray-50: #f9fafb;
-      --gray-600: #4b5563;
-      --white: #ffffff;
-    }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
-      background: #ffffff;
-      color: #111827;
-      line-height: 1.5;
-    }
-    img {
-      max-width: 100%;
-      display: block;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
+    /* RESET */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --customGreen:#0f9d58;
+      --customGreen-50:#e6f6ef;
+      --customGreen-100:#c8ebdc;
+      --customGreen-400:#34a853;
+      --customGreen-700:#0c6c3d;
+      --customGreen-800:#0a5430;
+      --gray-600:#4b5563;
+      --gray-50:#f9fafb;
+      --white:#fff;
     }
 
-    /* Layout helpers */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color:#111827;
+      background:var(--white);
+      line-height:1.5;
     }
-    .flex {
-      display: flex;
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e5e7eb;
     }
-    .items-center {
-      align-items: center;
+    header .inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .logo-wrap{display:flex;align-items:center;gap:.75rem;font-weight:700;font-size:1.25rem}
+    .logo-wrap span span{color:var(--customGreen)}
+    .logo-img{width:40px;height:40px;border-radius:8px}
+
+    /* HERO SECTION */
+    .hero{
+      background:var(--customGreen);padding:5rem 0;overflow:hidden;position:relative;
     }
-    .justify-between {
-      justify-content: space-between;
-    }
-    .justify-center {
-      justify-content: center;
-    }
-    .text-center {
-      text-align: center;
+    @media(min-width:768px){.hero{padding:8rem 0}}
+    .hero-grid{display:grid;gap:2rem}
+    @media(min-width:1024px){
+      .hero-grid{grid-template-columns:1.1fr 0.9fr;align-items:center;gap:3rem}
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      width: 100%;
-      border-bottom: 1px solid #e5e7eb;
-      background: #ffffff;
+    .hero-title{
+      color:#fff;font-size:2.5rem;font-weight:800;line-height:1.15;margin-bottom:.75rem;
     }
-    header .inner {
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    @media(min-width:768px){.hero-title{font-size:3rem}}
+    .hero-subtitle{color:rgba(255,255,255,.9);font-size:1.1rem;max-width:32rem}
+
+    .hero-card-shell{
+      position:relative;height:auto;border-radius:1.5rem;overflow:hidden;box-shadow:0 25px 45px rgba(0,0,0,.25);
+      display:flex;justify-content:center;align-items:center;
     }
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.25rem;
+    .hero-card-glass{
+      background:linear-gradient(to bottom right,rgba(255,255,255,.25),rgba(12,108,61,.4));
+      border:1px solid rgba(255,255,255,.3);border-radius:1.5rem;backdrop-filter:blur(10px);
+      width:100%;display:flex;justify-content:center;
     }
-    .logo-wrap span span {
-      color: var(--customGreen);
+    .hero-card-inner{
+      background:rgba(255,255,255,.96);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;width:90%;max-width:380px;
     }
-    .logo-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
+    .hero-logo-circle{
+      width:80px;height:80px;background:var(--customGreen-100);border:4px solid rgba(15,157,88,.2);
+      border-radius:1.25rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;
+    }
+    .hero-card-title{color:var(--customGreen);font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
+    .hero-card-text{color:var(--gray-600);margin-bottom:1.5rem;max-width:20rem}
+    .btn{
+      padding:.9rem 2rem;border:none;border-radius:.75rem;font-weight:600;font-size:1rem;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;transition:.2s ease;
+    }
+    .btn-primary{background:var(--customGreen);color:#fff;box-shadow:0 10px 25px rgba(0,0,0,.25)}
+    .btn-primary:hover{background:var(--customGreen-700);transform:scale(1.03)}
+    .btn-github{background:var(--customGreen);color:#fff}
+    .btn-github:hover{background:var(--customGreen-700);transform:scale(1.03)}
+    .btn-icon-left{margin-right:.5rem}
+    .hero-availability{
+      margin-top:1rem;background:var(--customGreen-50);border:1px solid rgba(15,157,88,.2);
+      border-radius:.75rem;color:var(--customGreen);font-size:.75rem;padding:.4rem 1rem;
     }
 
-    /* Hero section */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      background: var(--customGreen);
-      padding: 5rem 0;
+    .hero-left{display:flex;flex-direction:column;align-items:flex-start}
+    .hero-phone-preview{
+      margin-top:2rem;width:240px;max-width:80vw;filter:drop-shadow(0 18px 40px rgba(0,0,0,.35));
+        
     }
-    @media (min-width: 768px) {
-      .hero {
-        padding: 8rem 0;
-      }
-    }
-    .hero-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-    @media (min-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1.2fr 1fr;
-        align-items: center;
-      }
-    }
-    .hero-title {
-      color: #ffffff;
-      font-size: 2.25rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 0.75rem;
-    }
-    @media (min-width: 768px) {
-      .hero-title {
-        font-size: 3rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .hero-title {
-        font-size: 3.5rem;
-      }
-    }
-    .hero-subtitle {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.1rem;
-      max-width: 32rem;
-    }
-    .hero-card-shell {
-      position: relative;
-      height: 400px;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    }
-    @media (min-width: 1024px) {
-      .hero-card-shell {
-        height: 500px;
-      }
-    }
-    .hero-card-glass {
-      position: absolute;
-      inset: 0;
-      border-radius: 1.5rem;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.2),
-        rgba(12, 108, 61, 0.4)
-      );
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-card-inner {
-      width: 90%;
-      height: 90%;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 1.25rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-    }
-    .hero-logo-circle {
-      width: 80px;
-      height: 80px;
-      border-radius: 1.25rem;
-      background: var(--customGreen-100);
-      border: 4px solid rgba(15, 157, 88, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-    .hero-card-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--customGreen);
-      margin-bottom: 0.75rem;
-    }
-    .hero-card-text {
-      color: #4b5563;
-      max-width: 22rem;
-      margin-bottom: 1.5rem;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.9rem 2rem;
-      border-radius: 0.75rem;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: transform 0.2s ease, background 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-    .btn-primary {
-      background: var(--customGreen);
-      color: #ffffff;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-    }
-    .btn-primary:hover {
-      background: var(--customGreen-700);
-      transform: scale(1.03);
-    }
-    .btn-icon-left {
-      margin-right: 0.5rem;
-    }
-    .hero-availability {
-      margin-top: 1.25rem;
-      padding: 0.5rem 1rem;
-      border-radius: 0.75rem;
-      background: var(--customGreen-50);
-      color: var(--customGreen);
-      font-size: 0.75rem;
-      border: 1px solid rgba(15, 157, 88, 0.2);
-    }
-    .hero-circle {
-      position: absolute;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      filter: blur(24px);
-    }
-    .hero-circle.top {
-      top: 80px;
-      right: 10%;
-      width: 80px;
-      height: 80px;
-    }
-    .hero-circle.bottom {
-      bottom: 80px;
-      left: 10%;
-      width: 130px;
-      height: 130px;
+      
+ 
+      
+    .hero-phone-preview img{border-radius:1.25rem;width:100%}
+    @media(min-width:1024px){
+      .hero-phone-preview{width:280px;transform:translateX(40px)}
     }
 
-    /* Screenshot section */
-    .screenshot-section {
-      padding: 4rem 0;
-      background: linear-gradient(
-        to bottom,
-        var(--customGreen),
-        var(--customGreen-700)
-      );
-      color: #ffffff;
+    /* SCREENSHOT SECTION - ✅ 60% REDUCED TOP PADDING */
+    .screenshot-section{
+      padding:.2rem 0 4rem 0;  /* Top: 4rem → 1.6rem (60% reduction) */
+      background:linear-gradient(to bottom,var(--customGreen),var(--customGreen-700));color:#fff;
     }
-    .screenshot-section p {
-      max-width: 32rem;
-      margin: 0 auto 3rem auto;
-      opacity: 0.9;
-      font-size: 1.05rem;
-    }
-    .phone-frame {
-      position: relative;
-      max-width: 360px;
-      margin: 0 auto;
-    }
-    .phone-shell {
-      border-radius: 1.75rem;
-      overflow: hidden;
-      /* borders removed */
-      border: none;
-      background: transparent;
-      box-shadow: none;
-      backdrop-filter: none;
+    .screenshot-section p{max-width:32rem;margin:0 auto 3rem auto;opacity:.9}
+    
+    .screens-grid{display:grid;gap:2.5rem;align-items:center}
+    @media(min-width:768px){.screens-grid{grid-template-columns:1.3fr .7fr}}
+    
+    /* ✅ DESKTOP: Move images+cards 100px right */
+    @media(min-width:1024px){
+      .screens-grid{margin-left:250px}
     }
 
-    /* Still keep the decorative circles if you want elsewhere */
-    .phone-circle {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(20px);
-    }
-    .phone-circle.tl {
-      top: -32px;
-      left: -32px;
-      width: 64px;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.18);
-    }
-    .phone-circle.br {
-      bottom: -40px;
-      right: -40px;
-      width: 80px;
-      height: 80px;
-      background: rgba(59, 130, 246, 0.4);
-    }
-    .phone-circle.mid-l {
-      top: 50%;
-      left: -48px;
-      width: 24px;
-      height: 24px;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.3);
-    }
-    .phone-circle.mid-r {
-      top: 30%;
-      right: -40px;
-      width: 18px;
-      height: 18px;
-      background: rgba(59, 130, 246, 0.5);
+    .stack-column{display:flex;flex-direction:column;gap:1.75rem}
+    .stack-row{display:flex;gap:1.5rem;align-items:center}
+    
+    /* ✅ MOBILE: Cards 40% shorter height */
+    @media(max-width:767px){
+      .stack-row{flex-direction:column;text-align:center}
+      .info-card{flex:0 0 auto;padding:.9rem;max-height:140px;overflow:hidden}
+      .info-card h3{font-size:1.1rem;margin-bottom:.4rem}
+      .info-card p{font-size:.85rem;line-height:1.45}
     }
 
-    /* Screens gallery layout */
-.screens-grid{
-  display:grid;
-  gap:2.5rem;
-  position:relative;
-}
+    .info-card{
+      flex:0 0 300px;padding:1.5rem;border-radius:1.25rem;
+      background:linear-gradient(135deg,#fff,#e6f6ef);box-shadow:0 20px 45px rgba(0,0,0,.25);
+      border:2px solid rgba(52,168,83,.35);
+    }
+    .info-card h3{
+      background:linear-gradient(90deg,#0f9d58,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      font-size:1.25rem;font-weight:800;margin-bottom:.5rem;
+    }
+    .info-card p{color:#1f2933;font-size:.95rem;line-height:1.55}
 
-/* MOBILE — natural vertical flow */
-@media(max-width:767px){
-  .screens-grid{
-    grid-template-columns:1fr;
-  }
-}
+    .phone-frame.small img{
+      border-radius:1.25rem;box-shadow:0 15px 35px rgba(0,0,0,.35);transition:transform .2s ease;
+    }
+    .phone-frame.small img:hover{transform:translateY(-4px)}
 
-/* DESKTOP — your side layout */
-@media(min-width:768px){
-  .screens-grid{
-    grid-template-columns:1.4fr .6fr;
-    align-items:flex-end;
-  }
-}
-
-
-    .phone-frame.small {
-      max-width: 360px;
-      margin: 0 auto;
+    /* ✅ Desktop: 60% smaller images */
+    @media(min-width:1024px){
+      .screenshot-section .phone-frame.small img{transform:scale(1.1);transform-origin:center top}
     }
 
-    /* Modal styles */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.7);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+    /* OPEN SOURCE SECTION */
+    .oss-section{padding:4rem 0;background:var(--gray-50)}
+    .oss-inner{max-width:40rem;margin:0 auto;text-align:center}
+    .oss-logo-wrap{display:flex;justify-content:center;margin-bottom:1.5rem}
+    .oss-logo-circle{
+      width:64px;height:64px;border-radius:999px;background:var(--customGreen);
+      display:flex;align-items:center;justify-content:center;
     }
-    .modal-overlay.active {
-      display: flex;
+    .oss-title{font-size:2rem;font-weight:700;color:var(--customGreen);margin-bottom:.75rem}
+    .oss-text{font-size:1.05rem;color:#374151;margin-bottom:2rem}
+    .oss-badges{margin-top:2rem;display:grid;gap:1.5rem}
+    @media(min-width:768px){.oss-badges{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .oss-badge{padding:1rem}
+    .oss-badge-icon{
+      width:48px;height:48px;border-radius:.75rem;background:rgba(15,157,88,.1);
+      display:flex;align-items:center;justify-content:center;margin:0 auto .75rem auto;
+      font-size:1.4rem;color:var(--customGreen);
     }
-    .modal-card {
-      background: #ffffff;
-      color: #111827;
-      border-radius: 1rem;
-      padding: 1.75rem 1.5rem;
-      max-width: 420px;
-      width: 90%;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-      position: relative;
-    }
-    .modal-title {
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-      color: var(--customGreen-800);
-    }
-    .modal-body {
-      font-size: 0.98rem;
-      color: #4b5563;
-    }
-    .modal-close {
-      position: absolute;
-      top: 0.75rem;
-      right: 0.9rem;
-      border: none;
-      background: transparent;
-      font-size: 1.25rem;
-      cursor: pointer;
-      color: #9ca3af;
-    }
-    .modal-close:hover {
-      color: #4b5563;
-    }
-    .modal-trigger-btn {
-      margin-top: 0.75rem;
-      font-size: 0.85rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.1);
-      color: #f9fafb;
-      cursor: pointer;
-      backdrop-filter: blur(4px);
-    }
-    .modal-trigger-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Contact section */
-    .contact-section {
-      padding: 4rem 0;
-      background: linear-gradient(
-        to bottom right,
-        var(--customGreen),
-        var(--customGreen-700),
-        var(--customGreen-800)
-      );
-      position: relative;
-      overflow: hidden;
-      color: #ffffff;
-    }
-    .contact-inner {
-      position: relative;
-      z-index: 10;
-    }
-    .contact-inner p {
-      max-width: 32rem;
-      margin: 0 auto 2rem auto;
-      opacity: 0.9;
-      font-size: 1.05rem;
-    }
-    .btn-contact {
-      background: #ffffff;
-      color: var(--customGreen);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    .btn-contact:hover {
-      background: #f9fafb;
-      transform: scale(1.03);
-    }
-    .contact-bg-circle {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(30px);
-    }
-    .contact-bg-circle.tl {
-      top: 40px;
-      left: 40px;
-      width: 130px;
-      height: 130px;
-      background: rgba(255, 255, 255, 0.12);
-    }
-    .contact-bg-circle.br {
-      right: 40px;
-      bottom: 40px;
-      width: 160px;
-      height: 160px;
-      background: rgba(59, 130, 246, 0.35);
-    }
-    .contact-bg-circle.mid1 {
-      top: 50%;
-      left: 25%;
-      width: 80px;
-      height: 80px;
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .contact-bg-circle.mid2 {
-      bottom: 25%;
-      left: 70%;
-      width: 90px;
-      height: 90px;
-      background: rgba(52, 168, 83, 0.4);
-    }
-    .contact-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.07),
-        transparent
-      );
-    }
-
-    /* Features */
-    .features-section {
-      padding: 5rem 0;
-      background: var(--customGreen-50);
-    }
-    .features-header {
-      margin-bottom: 2.5rem;
-    }
-    .features-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--customGreen);
-    }
-    .features-subtitle {
-      color: var(--gray-600);
-      max-width: 32rem;
-      margin: 0 auto;
-    }
-    .features-grid {
-      display: grid;
-      gap: 1.75rem;
-    }
-    @media (min-width: 768px) {
-      .features-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-    @media (min-width: 1024px) {
-      .features-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-    .feature-card {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(6px);
-      border-radius: 0.75rem;
-      border: 2px solid rgba(15, 157, 88, 0.15);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      transition: border-color 0.2s ease, transform 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-    .feature-card:hover {
-      border-color: var(--customGreen-400);
-      transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
-    }
-    .feature-icon {
-      margin-bottom: 1rem;
-    }
-    .feature-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--customGreen);
-      margin-bottom: 0.5rem;
-    }
-    .feature-text {
-      color: var(--gray-600);
-      font-size: 0.98rem;
-    }
-
-    /* Open source section */
-    .oss-section {
-      padding: 4rem 0;
-      background: var(--gray-50);
-    }
-    .oss-inner {
-      max-width: 40rem;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .oss-logo-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-    .oss-logo-circle {
-      width: 64px;
-      height: 64px;
-      border-radius: 999px;
-      background: var(--customGreen);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .oss-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--customGreen);
-      margin-bottom: 0.75rem;
-    }
-    .oss-text {
-      font-size: 1.05rem;
-      color: #374151;
-      margin-bottom: 2rem;
-    }
-    .btn-github {
-      background: var(--customGreen);
-      color: #ffffff;
-    }
-    .btn-github:hover {
-      background: var(--customGreen-700);
-      transform: scale(1.03);
-    }
-    .oss-badges {
-      margin-top: 2rem;
-      display: grid;
-      gap: 1.5rem;
-    }
-    @media (min-width: 768px) {
-      .oss-badges {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-    .oss-badge {
-      padding: 1rem;
-    }
-    .oss-badge-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 0.75rem;
-      background: rgba(15, 157, 88, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 0.75rem auto;
-      font-size: 1.4rem;
-      color: var(--customGreen);
-    }
-    .oss-badge-title {
-      font-weight: 600;
-      color: var(--customGreen);
-      margin-bottom: 0.25rem;
-    }
-    .oss-badge-text {
-      font-size: 0.9rem;
-      color: var(--gray-600);
-    }
+    .oss-badge-title{font-weight:600;color:var(--customGreen);margin-bottom:.25rem}
+    .oss-badge-text{font-size:.9rem;color:var(--gray-600)}
   </style>
 </head>
 <body>
   <main>
-    <!-- Header -->
     <header>
       <div class="container inner">
         <a href="/" class="logo-wrap">
-          <img
-            class="logo-img"
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/dpadicon4%281%29-zPoCE9PZl8pbQNF6ZdWNNTy4HLFmtJ.png"
-            alt="A.I. DelvePad Logo"
-          />
+          <img class="logo-img" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/dpadicon4%281%29-zPoCE9PZl8pbQNF6ZdWNNTy4HLFmtJ.png" alt="A.I. DelvePad Logo" />
           <span>A.I. <span>DelvePad</span></span>
         </a>
-        <nav></nav>
       </div>
     </header>
 
-    <!-- Hero -->
     <section class="hero">
       <div class="container">
         <div class="hero-grid">
-            <div class="hero-left">
-              <h1 class="hero-title">Explore A.I. Skills Via Mobile</h1>
-              <p class="hero-subtitle">
-                View your progress with free tutorials with DelvePad's intuitive platform.
-              </p>
-
-              <!-- Phone preview under text -->
-              <div class="hero-phone-preview">
-                <img src="i15AIDelvePad1.png" alt="DelvePad mobile preview">
-              </div>
+          <div class="hero-left">
+            <h1 class="hero-title">Explore A.I. Skills Via Mobile</h1>
+            <p class="hero-subtitle">View your progress with free tutorials with DelvePad's intuitive platform.</p>
+            <div class="hero-phone-preview">
+              <img src="i15AIDelvePad1.png" alt="DelvePad mobile preview">
             </div>
-
+          </div>
           <div class="hero-card-shell">
             <div class="hero-card-glass">
               <div class="hero-card-inner">
                 <div class="hero-logo-circle">
-                  <img
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/dpadicon4%281%29-zPoCE9PZl8pbQNF6ZdWNNTy4HLFmtJ.png"
-                    alt="A.I. DelvePad Logo"
-                    style="width: 40px; height: 40px"
-                  />
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/dpadicon4%281%29-zPoCE9PZl8pbQNF6ZdWNNTy4HLFmtJ.png" alt="" style="width:40px;height:40px"/>
                 </div>
                 <p class="hero-card-title">Install</p>
-                <p class="hero-card-text">
-                  A.I. DelvePad : Mobile A.I. learning anywhere, anytime.
-                </p>
-                <a
-                  href="https://apps.apple.com/us/app/a-i-delvepad/id6743481267"
-                >
+                <p class="hero-card-text">A.I. DelvePad : Mobile A.I. learning anywhere, anytime.</p>
+                <a href="https://apps.apple.com/us/app/a-i-delvepad/id6743481267">
                   <button class="btn btn-primary">
-                    <svg
-                      class="btn-icon-left"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path
-                        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                      ></path>
-                      <polyline points="7 10 12 15 17 10"></polyline>
-                      <line x1="12" x2="12" y1="15" y2="3"></line>
-                    </svg>
+                    <svg class="btn-icon-left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
                     Download App
                   </button>
                 </a>
@@ -708,353 +213,45 @@
           </div>
         </div>
       </div>
-      <div class="hero-circle top"></div>
-      <div class="hero-circle bottom"></div>
     </section>
 
     <section class="screenshot-section">
-<style>
-.screens-grid{
-  display:grid;
-  gap:2rem;
-  position:relative;
-}
-@media(min-width:768px){
-  .screens-grid{grid-template-columns:1.4fr .6fr;}
-}
-.stack-column{display:flex;flex-direction:column;gap:1.25rem}
-
-.info-card{
-  width:300px;
-  padding:1.5rem;
-  border-radius:1.25rem;
-  background:linear-gradient(135deg,#ffffff,#e6f6ef);
-  box-shadow:0 20px 50px rgba(0,0,0,.25);
-  border:2px solid rgba(52,168,83,.35);
-}
-.info-card h3{
-  font-size:1.25rem;
-  font-weight:800;
-  background:linear-gradient(90deg,#0f9d58,#3b82f6);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.info-card p{font-size:.95rem;color:#1f2933;line-height:1.55}
-
-@media(max-width:768px){
-  .floating-card{
-    position:relative;
-    width:100%;
-    right:auto;
-    bottom:auto;
-    margin-top:1.5rem;
-  }
-}
-    
-    .hero-left{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-}
-
-.hero-phone-preview{
-  margin-top:2rem;
-  width:240px;
-  max-width:80vw;
-  filter: drop-shadow(0 18px 40px rgba(0,0,0,.35));
-}
-
-.hero-phone-preview img{
-  width:100%;
-  border-radius:1.25rem;
-}
-
-/* On desktop, float it slightly right */
-@media(min-width:1024px){
-  .hero-phone-preview{
-    width:280px;
-    transform: translateX(40px);
-  }
-}
-    
-    .stack-row{
-  display:flex;
-  align-items:center;
-  gap:2rem;
-}
-
-/* Reverse row for middle phone */
-.stack-row.reverse{
-  flex-direction:row-reverse;
-}
-
-/* Proper mobile stacking */
-@media(max-width:768px){
-  .stack-row{
-    flex-direction:column;
-    text-align:center;
-  }
-}
-    
-    /* Lock card width */
-.info-card{
-  flex: 0 0 300px;
-}
-
-/* Make phones 25% visually larger */
-.phone-frame.small{
-  flex: 0 0 375px;  /* 300 × 1.25 */
-  max-width:375px;
-}
-
-/* Left-align all phone images */
-.stack-row{
-  justify-content:flex-start;
-}
-
-/* Make sure cards stay centered vertically but phones hug the left */
-.stack-row .phone-frame{
-  margin-right:auto;
-}
-
-    
-
-</style>
-
-<div class="container">
-  <div class="text-center" style="margin-bottom:2rem">
-    <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:.5rem">
-      A.I. DelvePad on Mobile
-    </h2>
-    <p>
-      A.I. Delvepad helps you organize tutorials, track your progress, and master A.I. skills with an intuitive mobile experience.
-    </p>
-  </div>
-
-  <div class="screens-grid">
-
-    <!-- MAIN DEVICE -->
-    <div class="screen-item screen-item-main">
-      <div class="phone-frame">
-
-      </div>
-    </div>
-
-    <!-- STACKED DEVICES -->
-<div class="stack-column">
-
-  <!-- PHONE 2 -->
-  <div class="stack-row">
-    <div class="phone-frame small">
-      <img src="i15AIDelvePad2.png">
-    </div>
-
-    <div class="info-card right">
-      <h3>LLM Building Roadmap</h3>
-      <p>Follow step-by-step guidance that visually breaks down how large language models are structured, trained, and deployed.</p>
-    </div>
-  </div>
-
-  <!-- PHONE 3 -->
-  <div class="stack-row reverse">
-    <div class="info-card left">
-      <h3>Curated Tutorials</h3>
-      <p>Explore expertly selected AI tutorials gathered from top learning platforms and creators.</p>
-    </div>
-
-    <div class="phone-frame small">
-      <img src="i15AIDelvePad3.png">
-    </div>
-  </div>
-
-  <!-- PHONE 4 -->
-  <div class="stack-row">
-    <div class="phone-frame small">
-      <img src="i15AIDelvePad4.png">
-    </div>
-
-    <div class="info-card right">
-      <h3>Progress Tracking</h3>
-      <p>Track your daily learning streaks, completed modules, and skill milestones visually.</p>
-    </div>
-  </div>
-
-</div>
-
-
-    <!-- FLOATING INFO CARD -->
-    <div id="float-card" class="floating-card">
-      <h3 id="float-title"></h3>
-      <p id="float-text"></p>
-    </div>
-  </div>
-</div>
-
-<script>
-const cards={
-  card2:{title:"LLM Building Roadmap",text:"Follow step-by-step guidance that visually breaks down how large language models are structured, trained, and deployed. This roadmap transforms complex AI architecture into clear, easy-to-understand learning paths."},
-  card3:{title:"Curated Tutorials",text:"Explore expertly selected AI tutorials gathered from top learning platforms and creators. Everything is organized into focused categories so you can build skills faster without information overload."},
-  card4:{title:"Progress Tracking",text:"Track your daily learning streaks, completed modules, and skill milestones visually. Real-time progress indicators help keep your AI journey consistent and motivating."}
-};
-const card=document.getElementById("float-card"),
-t=document.getElementById("float-title"),
-p=document.getElementById("float-text");
-
-</script>
-</section>
-
-    <!-- Contact section -->
-    <section class="contact-section">
-      <div class="container contact-inner text-center">
-        <p>
-          Have questions about A.I. DelvePad or need assistance with the
-          options?
-        </p>
-        <a href="mailto:leapdeck1@gmail.com">
-          <button class="btn btn-contact">
-            <svg
-              class="btn-icon-left"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-              <path
-                d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-              ></path>
-            </svg>
-            Contact Us For Assistance
-          </button>
-        </a>
-      </div>
-      <div class="contact-bg-circle tl"></div>
-      <div class="contact-bg-circle br"></div>
-      <div class="contact-bg-circle mid1"></div>
-      <div class="contact-bg-circle mid2"></div>
-      <div class="contact-overlay"></div>
-    </section>
-
-    <!-- Features -->
-    <section id="features" class="features-section">
       <div class="container">
-        <div class="features-header text-center">
-          <h2 class="features-title">Supercharge Your A.I. Learning</h2>
-          <p class="features-subtitle">
-            DelvePad helps you organize, track, and accelerate your A.I.
-            learning journey with these powerful features.
-          </p>
+        <div class="text-center" style="margin-bottom:2rem">
+          <center><h2 style="font-size:1.75rem;font-weight:700;margin-bottom:.5rem">A.I. DelvePad on Mobile</h2></center>
+          <p>A.I. Delvepad helps you organize tutorials, track your progress, and master A.I. skills with an intuitive mobile experience.</p>
         </div>
-        <div class="features-grid">
-          <!-- Feature 1 -->
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M12 7v14"></path>
-                <path
-                  d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"
-                ></path>
-              </svg>
-            </div>
-            <div class="feature-title">Curated Tutorials</div>
-            <div class="feature-text">
-              Access high-quality A.I. tutorials from multiple platforms in one
-              organized place.
-            </div>
-          </div>
 
-          <!-- Feature 2 -->
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
-                <path d="M18 17V9"></path>
-                <path d="M13 17V5"></path>
-                <path d="M8 17v-3"></path>
-              </svg>
+        <div class="screens-grid">
+          <div class="stack-column">
+            <div class="stack-row">
+              <div class="phone-frame small">
+                <img src="i15AIDelvePad2.png" alt="LLM roadmap screen">
+              </div>
+              <div class="info-card">
+                <h3>LLM Building Roadmap</h3>
+                <p>Follow step-by-step guidance that visually breaks down how large language models are structured, trained, and deployed.</p>
+              </div>
             </div>
-            <div class="feature-title">Progress Tracking</div>
-            <div class="feature-text">
-              View your learning journey with visual progress indicators.
-            </div>
-          </div>
 
-          <!-- Feature 3 -->
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                ></path>
-              </svg>
+            <div class="stack-row reverse">
+              <div class="phone-frame small">
+                <img src="i15AIDelvePad3.png" alt="Curated tutorials screen">
+              </div>
+            <div class="info-card">
+                <h3>Curated Tutorials</h3>
+                <p>Explore expertly selected AI tutorials gathered from top learning platforms and creators.</p>
+              </div>
             </div>
-            <div class="feature-title">Favorites System</div>
-            <div class="feature-text">
-              Save your favorite tutorials for quick access and create
-              personalized learning paths.
-            </div>
-          </div>
 
-          <!-- Feature 4 -->
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <path
-                  d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"
-                ></path>
-                <path d="M2 12h20"></path>
-              </svg>
-            </div>
-            <div class="feature-title">Multi-Platform Support</div>
-            <div class="feature-text">
-              Track content from YouTube, Udemy, and other major learning
-              platforms in one place.
+            <div class="stack-row">
+              <div class="phone-frame small">
+                <img src="i15AIDelvePad4.png" alt="Progress tracking screen">
+              </div>
+              <div class="info-card">
+                <h3>Progress Tracking</h3>
+                <p>Track your daily learning streaks, completed modules, and skill milestones visually.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1067,70 +264,25 @@ p=document.getElementById("float-text");
         <div class="oss-inner">
           <div class="oss-logo-wrap">
             <div class="oss-logo-circle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                style="color: #ffffff"
-              >
-                <path
-                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-                ></path>
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ffffff">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
                 <path d="M9 18c-4.51 2-5-2-7-2"></path>
               </svg>
             </div>
           </div>
           <h2 class="oss-title">Open Source Project</h2>
-          <p class="oss-text">
-            This is also Opensource, a resource for anyone to try projects:
-          </p>
-          <a
-            href="https://github.com/leapdeck/AIDelvePad"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <p class="oss-text">This is also Opensource, a resource for anyone to try projects:</p>
+          <a href="https://github.com/leapdeck/AIDelvePad" target="_blank" rel="noopener noreferrer">
             <button class="btn btn-github">
-              <svg
-                class="btn-icon-left"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-                ></path>
+              <svg class="btn-icon-left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
                 <path d="M9 18c-4.51 2-5-2-7-2"></path>
               </svg>
               View on GitHub
-              <svg
-                style="margin-left: 0.5rem"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
+              <svg style="margin-left: 0.5rem" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M15 3h6v6"></path>
                 <path d="M10 14 21 3"></path>
-                <path
-                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                ></path>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
               </svg>
             </button>
           </a>
@@ -1139,103 +291,27 @@ p=document.getElementById("float-text");
             <div class="oss-badge">
               <div class="oss-badge-icon">📱</div>
               <div class="oss-badge-title">Mobile App</div>
-              <div class="oss-badge-text">
-                Complete iOS app source code available
-              </div>
+              <div class="oss-badge-text">Complete iOS app source code available</div>
             </div>
             <div class="oss-badge">
               <div class="oss-badge-icon">🔧</div>
               <div class="oss-badge-title">Customizable</div>
-              <div class="oss-badge-text">
-                Fork and modify for your own projects
-              </div>
+              <div class="oss-badge-text">Fork and modify for your own projects</div>
             </div>
             <div class="oss-badge">
               <div class="oss-badge-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
-                  ></path>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
                 </svg>
               </div>
               <div class="oss-badge-title">Practice A.I. based coding</div>
-              <div class="oss-badge-text">
-                Learn and experiment with AI development techniques
-              </div>
+              <div class="oss-badge-text">Learn and experiment with AI development techniques</div>
             </div>
           </div>
         </div>
       </div>
     </section>
   </main>
-
-  <!-- Minimal JS -->
-  <script>
-    // Smooth-scroll to features when hash present
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.location.hash === "#features") {
-        const el = document.getElementById("features");
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-
-      // Modal wiring
-      const triggers = document.querySelectorAll(".modal-trigger-btn");
-      const overlays = document.querySelectorAll(".modal-overlay");
-      const closes = document.querySelectorAll(".modal-close");
-
-      function openModal(id) {
-        const el = document.getElementById(id);
-        if (el) el.classList.add("active");
-      }
-
-      function closeModal(id) {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove("active");
-      }
-
-      triggers.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const id = btn.getAttribute("data-modal");
-          if (id) openModal(id);
-        });
-      });
-
-      closes.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const id = btn.getAttribute("data-close");
-          if (id) closeModal(id);
-        });
-      });
-
-      // Close when clicking backdrop
-      overlays.forEach((overlay) => {
-        overlay.addEventListener("click", (e) => {
-          if (e.target === overlay) {
-            overlay.classList.remove("active");
-          }
-        });
-      });
-
-      // Escape key closes any open modal
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          overlays.forEach((o) => o.classList.remove("active"));
-        }
-      });
-    });
-  </script>
 </body>
 </html>
